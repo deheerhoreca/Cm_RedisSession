@@ -68,6 +68,10 @@ class Cm_RedisSession_Model_Session implements SessionHandlerInterface
      */
     public function setSaveHandler()
     {
+        if(headers_sent()) {
+            return false;
+        }
+        
         session_set_save_handler($this);
         return $this;
     }
